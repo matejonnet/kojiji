@@ -23,8 +23,8 @@ import org.commonjava.rwx.anno.StructPart;
 import static com.redhat.red.build.koji.model.json.KojiJsonConstants.BUILD_SYSTEM;
 import static com.redhat.red.build.koji.model.json.KojiJsonConstants.EXTERNAL_BUILD_ID;
 import static com.redhat.red.build.koji.model.json.KojiJsonConstants.EXTERNAL_BUILD_URL;
+import static com.redhat.red.build.koji.model.json.KojiJsonConstants.GAV_INFO;
 import static com.redhat.red.build.koji.model.json.KojiJsonConstants.IMPORT_INITIATOR;
-import static com.redhat.red.build.koji.model.json.KojiJsonConstants.MAVEN_INFO;
 
 /**
  * Created by jdcasey on 9/15/16.
@@ -32,9 +32,9 @@ import static com.redhat.red.build.koji.model.json.KojiJsonConstants.MAVEN_INFO;
 @StructPart
 public class BuildExtraInfo
 {
-    @JsonProperty( MAVEN_INFO )
-    @DataKey( MAVEN_INFO )
-    private MavenExtraInfo mavenExtraInfo;
+    @JsonProperty( GAV_INFO )
+    @DataKey( GAV_INFO )
+    private GavExtraInfo gavExtraInfo;
 
     @JsonProperty( EXTERNAL_BUILD_ID )
     @DataKey( EXTERNAL_BUILD_ID )
@@ -54,24 +54,24 @@ public class BuildExtraInfo
 
     public BuildExtraInfo(){}
 
-    public BuildExtraInfo( MavenExtraInfo mavenExtraInfo )
+    public BuildExtraInfo( GavExtraInfo gavExtraInfo)
     {
-        this.mavenExtraInfo = mavenExtraInfo;
+        this.gavExtraInfo = gavExtraInfo;
     }
 
     public BuildExtraInfo( ProjectVersionRef gav )
     {
-        this.mavenExtraInfo = new MavenExtraInfo( gav );
+        this.gavExtraInfo = new GavExtraInfo( gav );
     }
 
-    public MavenExtraInfo getMavenExtraInfo()
+    public GavExtraInfo getGavExtraInfo()
     {
-        return mavenExtraInfo;
+        return gavExtraInfo;
     }
 
-    public void setMavenExtraInfo( MavenExtraInfo mavenExtraInfo )
+    public void setGavExtraInfo( GavExtraInfo gavExtraInfo)
     {
-        this.mavenExtraInfo = mavenExtraInfo;
+        this.gavExtraInfo = gavExtraInfo;
     }
 
     public String getExternalBuildId()
@@ -124,23 +124,23 @@ public class BuildExtraInfo
 
         BuildExtraInfo that = (BuildExtraInfo) o;
 
-        return getMavenExtraInfo() != null ?
-                getMavenExtraInfo().equals( that.getMavenExtraInfo() ) :
-                that.getMavenExtraInfo() == null;
+        return getGavExtraInfo() != null ?
+                getGavExtraInfo().equals( that.getGavExtraInfo() ) :
+                that.getGavExtraInfo() == null;
 
     }
 
     @Override
     public int hashCode()
     {
-        return getMavenExtraInfo() != null ? getMavenExtraInfo().hashCode() : 0;
+        return getGavExtraInfo() != null ? getGavExtraInfo().hashCode() : 0;
     }
 
     @Override
     public String toString()
     {
         return "BuildMavenInfo{" +
-                "mavenExtraInfo=" + mavenExtraInfo +
+                "gavExtraInfo=" + gavExtraInfo +
                 '}';
     }
 }

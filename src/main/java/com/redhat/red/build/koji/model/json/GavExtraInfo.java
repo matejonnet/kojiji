@@ -29,7 +29,7 @@ import static com.redhat.red.build.koji.model.json.KojiJsonConstants.VERSION;
  * Created by jdcasey on 9/15/16.
  */
 @StructPart
-public class MavenExtraInfo
+public class GavExtraInfo
 {
     @JsonProperty( GROUP_ID )
     @DataKey( GROUP_ID )
@@ -44,7 +44,7 @@ public class MavenExtraInfo
     private String version;
 
     @JsonCreator
-    public MavenExtraInfo( @JsonProperty( GROUP_ID ) String groupId, @JsonProperty( ARTIFACT_ID ) String artifactId,
+    public GavExtraInfo( @JsonProperty( GROUP_ID ) String groupId, @JsonProperty( ARTIFACT_ID ) String artifactId,
                            @JsonProperty( VERSION ) String version )
     {
         this.groupId = groupId;
@@ -52,14 +52,14 @@ public class MavenExtraInfo
         this.version = version;
     }
 
-    public MavenExtraInfo( ProjectVersionRef gav )
+    public GavExtraInfo( ProjectVersionRef gav )
     {
         this.groupId = gav.getGroupId();
         this.artifactId = gav.getArtifactId();
         this.version = gav.getVersionString();
     }
 
-    public MavenExtraInfo()
+    public GavExtraInfo()
     {
     }
 
@@ -100,12 +100,12 @@ public class MavenExtraInfo
         {
             return true;
         }
-        if ( !( o instanceof MavenExtraInfo ) )
+        if ( !( o instanceof GavExtraInfo) )
         {
             return false;
         }
 
-        MavenExtraInfo that = (MavenExtraInfo) o;
+        GavExtraInfo that = (GavExtraInfo) o;
 
         if ( getGroupId() != null ? !getGroupId().equals( that.getGroupId() ) : that.getGroupId() != null )
         {
@@ -131,7 +131,7 @@ public class MavenExtraInfo
     @Override
     public String toString()
     {
-        return "MavenExtraInfo{" +
+        return "GavExtraInfo{" +
                 "groupId='" + groupId + '\'' +
                 ", artifactId='" + artifactId + '\'' +
                 ", version='" + version + '\'' +

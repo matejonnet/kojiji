@@ -259,7 +259,15 @@ public class BuildOutput
         public Builder withMavenInfoAndType( ProjectVersionRef gav )
         {
             target.outputType = StandardOutputType.maven.name();
-            target.extraInfo = new FileExtraInfo( new MavenExtraInfo( gav ) );
+            target.extraInfo = new FileExtraInfo( new GavExtraInfo( gav ) );
+
+            return this;
+        }
+
+        public Builder withNpmInfoAndType( ProjectVersionRef gav )
+        {
+            target.outputType = StandardOutputType.npm.name();
+            target.extraInfo = new FileExtraInfo( new GavExtraInfo( gav ) );
 
             return this;
         }

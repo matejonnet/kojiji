@@ -96,6 +96,8 @@ public final class KojiJsonConstants
 
     public static final String ARTIFACT_ID = "artifact_id";
 
+    public static final String GAV_INFO = "gav";
+
     public static final String MAVEN_INFO = "maven";
 
     public static final String EXTERNAL_BUILD_ID = "external_build_id";

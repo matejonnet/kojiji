@@ -20,7 +20,7 @@ import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
 import org.commonjava.rwx.anno.DataKey;
 import org.commonjava.rwx.anno.StructPart;
 
-import static com.redhat.red.build.koji.model.json.KojiJsonConstants.MAVEN_INFO;
+import static com.redhat.red.build.koji.model.json.KojiJsonConstants.GAV_INFO;
 
 /**
  * Created by jdcasey on 9/15/16.
@@ -28,32 +28,32 @@ import static com.redhat.red.build.koji.model.json.KojiJsonConstants.MAVEN_INFO;
 @StructPart
 public class FileExtraInfo
 {
-    @JsonProperty( MAVEN_INFO )
-    @DataKey( MAVEN_INFO )
-    private MavenExtraInfo mavenExtraInfo;
+    @JsonProperty( GAV_INFO )
+    @DataKey( GAV_INFO )
+    private GavExtraInfo gavExtraInfo;
 
-    public FileExtraInfo( @JsonProperty( MAVEN_INFO ) MavenExtraInfo mavenExtraInfo )
+    public FileExtraInfo( @JsonProperty( GAV_INFO ) GavExtraInfo gavExtraInfo)
     {
-        this.mavenExtraInfo = mavenExtraInfo;
+        this.gavExtraInfo = gavExtraInfo;
     }
 
     public FileExtraInfo()
     {
     }
 
-    public void setMavenExtraInfo( MavenExtraInfo mavenExtraInfo )
+    public void setGavExtraInfo( GavExtraInfo gavExtraInfo)
     {
-        this.mavenExtraInfo = mavenExtraInfo;
+        this.gavExtraInfo = gavExtraInfo;
     }
 
     public FileExtraInfo( ProjectVersionRef gav )
     {
-        this.mavenExtraInfo = new MavenExtraInfo( gav );
+        this.gavExtraInfo = new GavExtraInfo( gav );
     }
 
-    public MavenExtraInfo getMavenExtraInfo()
+    public GavExtraInfo getGavExtraInfo()
     {
-        return mavenExtraInfo;
+        return gavExtraInfo;
     }
 
     @Override
@@ -70,23 +70,23 @@ public class FileExtraInfo
 
         FileExtraInfo that = (FileExtraInfo) o;
 
-        return getMavenExtraInfo() != null ?
-                getMavenExtraInfo().equals( that.getMavenExtraInfo() ) :
-                that.getMavenExtraInfo() == null;
+        return getGavExtraInfo() != null ?
+                getGavExtraInfo().equals( that.getGavExtraInfo() ) :
+                that.getGavExtraInfo() == null;
 
     }
 
     @Override
     public int hashCode()
     {
-        return getMavenExtraInfo() != null ? getMavenExtraInfo().hashCode() : 0;
+        return getGavExtraInfo() != null ? getGavExtraInfo().hashCode() : 0;
     }
 
     @Override
     public String toString()
     {
-        return "FileMavenInfo{" +
-                "mavenInfo=" + mavenExtraInfo +
+        return "FileGavInfo{" +
+                "gavInfo=" + gavExtraInfo +
                 '}';
     }
 }
